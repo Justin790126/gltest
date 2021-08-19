@@ -4,10 +4,12 @@ project(Tutorial)
 
 find_package(GLEW REQUIRED)
 find_package(OpenGL REQUIRED)
+find_package(OpenCV REQUIRED)
 find_package(glfw3 REQUIRED)
 include_directories(
     ${GLEW_INCLUDE_DIRS}
     ${glfw3_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}
     ${PROJECT_SOURCE_DIR}/common/
 )
 
@@ -43,6 +45,21 @@ add_executable(t3
 target_link_libraries(
     t3
     ${OPENGL_LIBRARIES}
+    ${GLEW_LIBRARIES}
+    ${glfw3_LIBRARIES}
+    glfw
+)
+
+
+add_executable(t5
+  ${PROJECT_SOURCE_DIR}/t5/t5.cpp
+    ${PROJECT_SOURCE_DIR}/common/shader.cpp
+    ${PROJECT_SOURCE_DIR}/common/texture.cpp
+)
+target_link_libraries(
+    t5
+    ${OPENGL_LIBRARIES}
+    ${OpenCV_LIBRARIES}
     ${GLEW_LIBRARIES}
     ${glfw3_LIBRARIES}
     glfw
